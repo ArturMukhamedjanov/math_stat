@@ -38,6 +38,7 @@ def make_intervals(data, n, M, h, a, summury_count, result_matrix):
     summury_count += count/n
     temp.append(round(summury_count, 2))
     temp.append(round(count/ n / h, 2))
+    print(temp)
     result_matrix.append(temp)
     if(a + h >= M):
         return result_matrix
@@ -111,10 +112,16 @@ k = 1 + 3.32 * math.log10(n)
 h = round((M - m) / k,2)
 a = m
 print(m, M, k, h)
+print( "m =", m)
+print("M =", M)
+print("k =", k)
+print("h =", h)
 result_matrix = make_intervals(data, n, M, h, a, 0, [])
 generate_gistogramm(result_matrix)
 generate_grafic(result_matrix)
 create_excel_table(result_matrix)
-math_estimate = count_math_estimate(result_matrix, n)
+math_estimate = round(count_math_estimate(result_matrix, n), 2)
 dispersion = round(count_math_dispersion(result_matrix, n, math_estimate),2)
 point_dispersion = round(n / (n - 1) * dispersion,2)
+
+print(math_estimate, dispersion, point_dispersion)
